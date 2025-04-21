@@ -24,7 +24,9 @@ contract Lock {
     function getToken() public returns (string memory, string memory, string memory) {
         Token memory token = tokens[msg.sender];
 
+        require(bytes(token.name).length != 0, "Token does not exist");
         require(token.owner == msg.sender, "You are not owner");
+        
 
         emit TokenViewed(token.name, token.message, token.imgUrl, token.owner);  
 
